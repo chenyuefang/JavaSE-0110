@@ -10,7 +10,11 @@
 
 3. 创建文件 .gitconfig 放在用户目录下
 
-4. 创建项目，创建文件 .gitignore，把项目上传到 GitHub
+4. 创建项目，创建文件 .gitignore
+- .idea
+- *.iml
+
+5. 把项目上传到 GitHub
 
    > VCS | Import Into Version Control | Share Project on GitHub
 
