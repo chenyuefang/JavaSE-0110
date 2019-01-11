@@ -1,6 +1,6 @@
 package demo.day02;
 
-public class Hello {
+public class _1_Hello {
     // Shift + Ctrl + Enter 进入编辑区
     // psvm + Tab 创建主方法
 

@@ -15,7 +15,7 @@ package demo.day02;
  *
  * Google Style: https://google.github.io/styleguide/javaguide.html
  */
-public class Style { // 埃及括号法
+public class _2_Style { // 埃及括号法
 
     public static void main(String[] args) {
         int studentAge = 20;
