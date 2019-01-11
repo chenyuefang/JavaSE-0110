@@ -7,6 +7,7 @@ package demo.day02;
  * 2. 关系运算符
  * 3. 逻辑运算符
  * 4. 位运算
+ * 5. 条件运算符 三目
  */
 public class _5_Opreator {
     public static void main(String[] args) {
@@ -80,6 +81,12 @@ public class _5_Opreator {
 
 //        4.
 
+//        5.
 
+        String str1 = "hello";
+        String str2 = "hi";
+
+        int n = (str1.length() < str2.length()) ? 1 : 2;
+        System.out.println(n);
     }
 }
