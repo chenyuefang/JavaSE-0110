@@ -14,6 +14,15 @@ public class _6_If {
         } else {
             System.out.println("C");
         }
+
+        if (scroe == 100) {
+            // Ctrl + Alt + T + 4/5
+        }
+
+        if (scroe >= 60) {
+
+        } else {
+        }
     }
 
 
