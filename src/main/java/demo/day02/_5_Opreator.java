@@ -8,6 +8,7 @@ package demo.day02;
  * 3. 逻辑运算符
  * 4. 位运算
  * 5. 条件运算符 三目
+ * 6. 赋值运算符
  */
 public class _5_Opreator {
     public static void main(String[] args) {
@@ -88,5 +89,19 @@ public class _5_Opreator {
 
         int n = (str1.length() < str2.length()) ? 1 : 2;
         System.out.println(n);
+
+//        6.
+
+        int m = 100;
+
+        // 二元赋值运算符 += -= *= /= %=
+
+        m += 1; // m += 1 等价于 m = m + 1;
+        System.out.println(m);
+
+        m %= 100;
+        System.out.println(m);
+
+
     }
 }
