@@ -33,11 +33,12 @@ public class _2_Human {
     public static void main(String[] args) {
         _2_Human tom = new _2_Human(); // instance 实例对象
 
-        _2_Human jerry = new _2_Human();
-
-        tom.name = "Tom";
-        System.out.println(tom.name);
-
-        tom.study(1);
+        System.out.println((int)(tom.gender));
+//        _2_Human jerry = new _2_Human();
+//
+//        tom.name = "Tom";
+//        System.out.println(tom.name);
+//
+//        tom.study(1);
     }
 }

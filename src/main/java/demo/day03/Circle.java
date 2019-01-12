@@ -26,7 +26,7 @@ public class Circle {
      * 默认构造方法：初始化域为默认值：整形-0，浮点型-0.0，String-null，boolean-false
      */
 
-//    Circle(){}
+    Circle(){}
 
 //   Circle(double x, double y, double radius, String color) {
 //        this.x = x;

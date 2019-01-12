@@ -5,7 +5,7 @@ public class Test {
     public static void main(String[] args) {
 
         Circle circle = new Circle(2.0, 3.0, 4.0, "black"); // Ctrl + P
-
+        Circle c = new Circle();
 
 //        circle.x = 1.0;
 //        circle.y = 2.0;
