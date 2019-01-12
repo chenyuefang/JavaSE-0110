@@ -2,6 +2,8 @@ package demo.day03;
 
 /**
  * 类 = 域 + 方法
+ *
+ * 类是创建对象的模板
  */
 public class Human {
     // 1. 域：类似于变量的定义
@@ -26,14 +28,16 @@ public class Human {
        return name;
     }
 
-/*
+    // 对象：Object 对象是具体的
+
     public static void main(String[] args) {
-        String s1 = "hello";
-        String s2 = "hi";
-        System.out.println(s1 + s2); // + 字符串的拼接
-        System.out.println(1 + 2);
-        System.out.println(1 + s1);
-        System.out.println(1 + "" + 2);
+        Human tom = new Human();
+
+        Human jerry = new Human();
+
+        tom.name = "Tom";
+        System.out.println(tom.name);
+
+        tom.study(1);
     }
-    */
 }
