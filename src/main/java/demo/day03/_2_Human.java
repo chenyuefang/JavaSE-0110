@@ -5,7 +5,7 @@ package demo.day03;
  *
  * 类是创建对象的模板
  */
-public class Human {
+public class _2_Human {
     // 1. 域：类似于变量的定义
     String name;
     char gender; // '男' '女' "Male" "Female"
@@ -31,9 +31,9 @@ public class Human {
     // 对象：Object 对象是具体的
 
     public static void main(String[] args) {
-        Human tom = new Human();
+        _2_Human tom = new _2_Human();
 
-        Human jerry = new Human();
+        _2_Human jerry = new _2_Human();
 
         tom.name = "Tom";
         System.out.println(tom.name);
