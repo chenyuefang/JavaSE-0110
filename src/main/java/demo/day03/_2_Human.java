@@ -31,7 +31,7 @@ public class _2_Human {
     // 对象：Object 对象是具体的
 
     public static void main(String[] args) {
-        _2_Human tom = new _2_Human();
+        _2_Human tom = new _2_Human(); // instance 实例对象
 
         _2_Human jerry = new _2_Human();
 
