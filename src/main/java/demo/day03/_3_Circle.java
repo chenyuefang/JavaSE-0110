@@ -1,6 +1,6 @@
 package demo.day03;
 
-public class Circle {
+public class _3_Circle {
     double pi = 3.14;
     double x;
     double y;
@@ -8,7 +8,7 @@ public class Circle {
     String color;
 
     // Alt + Insert
-    public Circle(double x, double y, double radius, String color) {
+    public _3_Circle(double x, double y, double radius, String color) {
         this.x = x;
         this.y = y;
         this.radius = radius;
@@ -26,9 +26,9 @@ public class Circle {
      * 默认构造方法：初始化域为默认值：整形-0，浮点型-0.0，String-null，boolean-false
      */
 
-    Circle(){}
+    _3_Circle(){}
 
-//   Circle(double x, double y, double radius, String color) {
+//   _3_Circle(double x, double y, double radius, String color) {
 //        this.x = x;
 //        this.y = y;
 //        this.radius = radius;

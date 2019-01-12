@@ -4,8 +4,8 @@ public class Test {
 
     public static void main(String[] args) {
 
-        Circle circle = new Circle(2.0, 3.0, 4.0, "black"); // Ctrl + P
-        Circle c = new Circle();
+        _3_Circle circle = new _3_Circle(2.0, 3.0, 4.0, "black"); // Ctrl + P
+        _3_Circle c = new _3_Circle();
 
 //        circle.x = 1.0;
 //        circle.y = 2.0;
