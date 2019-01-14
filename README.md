@@ -93,7 +93,13 @@
     
 ### Day 04
 
-1. package: java.lang
-2. String Class
-3. 列出 String 类所有的重载方法
-4. 列出 String 类重写了父类的方法      
+1. package: java.lang / String Class
+- 列出 String 类所有的重载方法
+- 列出 String 类重写了父类的方法    
+
+2. 随机生成 [1， 20] 数 10000 次
+- java.lang.Math
+- java.util.Random
+- 并判断两种方法的效率
+   
+  
