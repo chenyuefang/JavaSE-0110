@@ -1,6 +1,6 @@
 package demo.day04;
 
-public class Test {
+public class Test extends Object {
 
     public static void main(String[] args) {
         Calculator calculator = new Calculator();
@@ -19,5 +19,23 @@ public class Test {
 
 //        Square s2 = new Shape(); // ?
         System.out.println(s1.getArea()); //
+
+        String a = "hello";
+//        String b = "hello";
+        String b = new String("hello");
+
+        System.out.println(a + b);
+
+        System.out.println(a == b);
+
+        System.out.println(a.equals(b));
+
+        // Ctrl + O
+
+        Human human = new Human();
+        System.out.println(human);
+
+        human.name = "";
+
     }
 }
