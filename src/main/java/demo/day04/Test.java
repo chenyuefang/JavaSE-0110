@@ -3,6 +3,14 @@ package demo.day04;
 public class Test extends Object {
 
     public static void main(String[] args) {
+
+
+        Division division = new Division(1, 0);
+//        division.y = 0;
+//        division.setY(0);
+        System.out.println(division.div());
+
+
         Calculator calculator = new Calculator();
         System.out.println(calculator.add(1, 2));
         System.out.println(calculator.add(1.1, 2.2)); // 浮点数精度损失
@@ -32,10 +40,19 @@ public class Test extends Object {
 
         // Ctrl + O
 
-        Human human = new Human();
-        System.out.println(human);
+        Human human = new Human("Tom", 18, 'M', 1.8, false);
 
-        human.name = "";
+        human.study();
+        human.work();
+
+        System.out.println(human.getName());
+
+        human.setName("Jerry");
+
+        System.out.println(human.getName());
+
+//        human.name = "Jerry";
+//        System.out.println(human.name);
 
     }
 }
