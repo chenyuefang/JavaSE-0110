@@ -88,4 +88,12 @@
      * 2. 纸牌分发规则
      * 3. 纸牌花色及大小比较规则
      */
-    ```     
+    ```   
+    
+    
+### Day 04
+
+1. package: java.lang
+2. String Class
+3. 列出 String 类所有的重载方法
+4. 列出 String 类重写了父类的方法      
