@@ -159,5 +159,32 @@
 苏宏月
 赵灿
 ```
+
+### Day 05
+
+1. String 方法
+- `charAt`
+- `concat` `abbr of concatenate [kɒn'kætɪneɪt]`
+- `contains`
+- `endsWith`
+- `equals`
+- `equalsIgnoreCase`
+- `getBytes`
+- `indexOf`
+- `isEmpty`
+- `lastIndexOf`
+- `length`
+- `matches`
+- `replace`
+- `replaceAll`
+- `replaceFirst`
+- `split`
+- `startWith`
+- `subString`
+- `toCharArray`
+- `toLowerCase`
+- `toUpperCase`
+- `trim`
+- `valueOf`
    
   
