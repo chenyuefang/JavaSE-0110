@@ -186,5 +186,7 @@
 - `toUpperCase`
 - `trim`
 - `valueOf`
+
+2. 定义 Shape 接口，声明了求面积和求周长的方法。做实现类 Square， Circle
    
   
