@@ -5,6 +5,7 @@ package demo.day05;
  * 1. 不能实例化
  * 2. 用来被实现的
  * 3. 对接口的所有实现类做了一个限制和约束的作用
+ * 4. 接口可以多实现（类是单继承的）
  *
  * class = fields + methods
  * interface = constants + abstract methods
@@ -25,6 +26,36 @@ class InterfaceTestClass implements InterfaceTest {
 
     @Override
     public void method(int x) {
+
+    }
+}
+
+interface A {
+    void a();
+}
+
+interface B {
+    void b();
+}
+
+interface C {
+    void c();
+}
+
+class ABC implements A, B, C {
+
+    @Override
+    public void a() {
+
+    }
+
+    @Override
+    public void b() {
+
+    }
+
+    @Override
+    public void c() {
 
     }
 }
