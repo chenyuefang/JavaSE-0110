@@ -189,4 +189,6 @@
 
 2. 定义 Shape 接口，声明了求面积和求周长的方法。做实现类 Square， Circle
    
-  
+3. 查看文档，学习 Set 接口的实现类 HashSet，Map 接口的实现类 HashMap，测试相关的方法   
+- `java.util.Set`
+- `java.util.Map`

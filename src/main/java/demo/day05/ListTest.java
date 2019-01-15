@@ -5,6 +5,11 @@ import java.util.List;
 
 /**
  * List 列表
+ *
+ * Set 集合
+ *
+ * Map 映射
+ *
  */
 public class ListTest {
 
@@ -27,5 +32,20 @@ public class ListTest {
         for (String string : strings) {
             System.out.println(string);
         }
+
+        /**
+         * Integer 是 int 的封装类
+         * Double 是 double 的封装类
+         * Boolean 是 boolean 的封装类
+         */
+        List<Integer> ints = new ArrayList<>();
+        ints.add(1);
+        ints.add(1);
+        ints.add(1);
+
+        for (Integer anInt : ints) {
+            System.out.println(anInt);
+        }
+
     }
 }
