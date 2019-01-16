@@ -198,3 +198,32 @@
 - 命令在哪执行？
 - 命令的具体写法：不能变的，可以变的
 - 命令执行后的结果
+
+### Day 06
+1. DDL 学生选课系统
+
+```
+学生表 student
+   id
+   name
+   age
+   gender
+   dob
+   departmentId
+   
+系别表 department
+   id
+   title 系名称
+   tel
+ 
+课程表 course
+   id
+   title 课程名称
+   credit 学分
+ 
+选课表 sc
+   id
+   studentId
+   courseId
+   grade 考试成绩
+```
