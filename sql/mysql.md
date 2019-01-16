@@ -45,3 +45,35 @@
     - DDL `create / alter / drop`
         - `truncate` vs. `delete`
     - DML `insert / update / delete`
+    - DQL
+    
+9. Sample database structure
+
+> Table `emp` 员工表
+
+Field    | Type        | Null | Key | Default | Comment
+----------|-------------|------|-----|---------|-------
+EMPNO    | int(4)      | NO   | PRI | NULL    | 员工编号
+ENAME    | varchar(10) | YES  |     | NULL    | 员工姓名
+JOB      | varchar(9)  | YES  |     | NULL    | 工作工种
+MGR      | int(4)      | YES  |     | NULL    | 经理编号
+HIREDATE | date        | YES  |     | NULL    | 入职日期
+SAL      | double(7,2) | YES  |     | NULL    | 基本工资
+COMM     | double(7,2) | YES  |     | NULL    | 奖金
+DEPTNO   | int(2)      | YES  | MUL | NULL    | 部门编号
+
+> Table `dept` 部门表
+
+Field  | Type        | Null | Key | Default | Comment
+--------|-------------|------|-----|---------|-------
+DEPTNO | int(2)      | NO   | PRI | NULL    | 部门编号
+DNAME  | varchar(14) | YES  |     | NULL    | 部门名称
+LOC    | varchar(13) | YES  |     | NULL    | 所在地区
+
+> Table `salgrade` 工资级别表
+
+Field | Type    | Null | Key | Default | Comment
+-------|---------|------|-----|---------|-------
+GRADE | int(11) | YES  |     | NULL    | 工资级别
+LOSAL | int(11) | YES  |     | NULL    | 最低工资
+HISAL | int(11) | YES  |     | NULL    | 最高工资
