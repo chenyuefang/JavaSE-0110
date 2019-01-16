@@ -13,5 +13,9 @@ public class SetTest {
         strings.add("hi");
 
         System.out.println(strings.size());
+
+        for (String string : strings) {
+            System.out.println(string);
+        }
     }
 }

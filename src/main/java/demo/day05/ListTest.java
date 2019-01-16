@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * List 列表
- * 有序的
+ * 有序的（索引）
  * 元素可重复
  *
  * Set 集合
@@ -24,8 +24,8 @@ public class ListTest {
 
         // 1. 存
         strings.add("hello");
-        strings.add("hi");
-        strings.add("hi");
+        strings.add("hi1");
+        strings.add("hi2");
 
         // 2. 取
         System.out.println(strings.get(0));

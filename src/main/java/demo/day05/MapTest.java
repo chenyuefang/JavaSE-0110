@@ -13,5 +13,17 @@ public class MapTest {
         map.put(1, "ghi");
 
         System.out.println(map.get(1));
+
+        for (Integer integer : map.keySet()) {
+            System.out.println(integer + " - " + map.get(integer));
+        }
+
+        for (String value : map.values()) {
+            System.out.println(value);
+        }
+
+        for (Map.Entry<Integer, String> integerStringEntry : map.entrySet()) {
+            System.out.println(integerStringEntry.getKey() + " - " + integerStringEntry.getValue());
+        }
     }
 }
