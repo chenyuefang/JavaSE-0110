@@ -93,3 +93,11 @@ mysql> show variables where variable_name like 'char%' or variable_name like 'co
 - password
 - Download missing driver files
 - Ctrl + Enter 
+
+11. user@%
+
+```
+create user admin; 
+GRANT ALL PRIVILEGES ON *.* TO admin@"%" IDENTIFIED BY 'admin' WITH GRANT OPTION;
+flush privileges; 
+```
