@@ -25,7 +25,7 @@
     - Redis
     
 #### 重点
-1. SQL 命令式的语言
+1. SQL 命令式的语言 `DQL`
 2. 数据库的设计    
 
 #### 概念
@@ -44,4 +44,4 @@
 8. SQL
     - DDL `create / alter / drop`
         - `truncate` vs. `delete`
-    - DML ``
+    - DML `insert / update / delete`

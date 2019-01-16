@@ -7,10 +7,10 @@ create database db_test;
 
 drop table if exists db_test.student;
 create table db_test.student (
-  id           int auto_increment primary key, # 自增长
-  name         varchar(20) unique,
-  age          int(2) not null,
-  gender       char(1),
+  id           int                  auto_increment primary key, # 自增长
+  name         varchar(20) not null,
+  age          int(2)      not null,
+  gender       char(1)     not null default 'M',
   dob          date, # date of birth
   departmentId int
 );
@@ -36,14 +36,15 @@ from db_test.student; -- 查询语句
 select *
 from db_test.department;
 
-insert into db_test.student (name, age, gender, dob, departmentId)
-value ('Tom', 20, 'M', '2000-1-1', 1);
+insert into db_test.student (name, age, dob, departmentId)
+value ('Tom', 20, '2000-1-1', 1);
 
 insert into db_test.student (name, age, gender, dob, departmentId)
 value ('Jerry', 19, 'F', '2001-1-1', 2);
 
 insert into db_test.department (title, tel)
 value ('CS', '18600000000');
+
 insert into db_test.department (title, tel)
 value ('EE', '18600000001');
 
@@ -69,5 +70,14 @@ select 1 /* as
 df... */ + 1;
 
 # truncate table db_test.student;
+
+update db_test.student set age = 19
+where id = 1; # 行检索
+
+delete from db_test.student
+where id = 2;
+
+select name, age # 投影操作
+from db_test.student;
 
 
