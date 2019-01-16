@@ -40,3 +40,8 @@
     - R - Retrieve `select`
     - U - Update `update`
     - D - Delete `delete`
+    
+8. SQL
+    - DDL `create / alter / drop`
+        - `truncate` vs. `delete`
+    - DML ``
