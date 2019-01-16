@@ -5,10 +5,15 @@ import java.util.List;
 
 /**
  * List 列表
+ * 有序的
+ * 元素可重复
  *
  * Set 集合
+ * 无序的
+ * 元素不能重复 -> 去重
  *
  * Map 映射
+ * key - value pairs 键 - 值 对
  *
  */
 public class ListTest {
