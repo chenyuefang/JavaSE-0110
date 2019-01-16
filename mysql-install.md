@@ -94,7 +94,7 @@ mysql> show variables where variable_name like 'char%' or variable_name like 'co
 - Download missing driver files
 - Ctrl + Enter 
 
-11. user@%
+11. user@"%"
 
 ```
 create user admin; 
