@@ -7,8 +7,10 @@ create database db_test;
 
 drop table if exists db_test.student;
 create table db_test.student (
-  id           int                  auto_increment primary key, # 自增长
-  name         varchar(20) not null,
+  id           int                  auto_increment primary key
+  comment 'id 主键', # 自增长
+  name         varchar(20) not null
+  comment '学生姓名',
   age          int(2)      not null,
   gender       char(1)     not null default 'M',
   dob          date, # date of birth
@@ -71,11 +73,15 @@ df... */ + 1;
 
 # truncate table db_test.student;
 
-update db_test.student set age = 19
+update db_test.student
+set age = 19
 where id = 1; # 行检索
 
-delete from db_test.student
+delete
+from db_test.student
 where id = 2;
 
 select name, age # 投影操作
 from db_test.student;
+
+show full columns from db_test.student;

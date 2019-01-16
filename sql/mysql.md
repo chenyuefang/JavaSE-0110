@@ -46,6 +46,7 @@
         - `truncate` vs. `delete`
     - DML `insert / update / delete`
     - DQL
+    - JDBC `Java DataBase Connector`
     
 9. Sample database structure
 
