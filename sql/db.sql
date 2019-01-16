@@ -79,5 +79,3 @@ where id = 2;
 
 select name, age # 投影操作
 from db_test.student;
-
-
