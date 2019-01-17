@@ -38,20 +38,21 @@ from db_test.student; -- 查询语句
 select *
 from db_test.department;
 
-insert into db_test.student (name, age, dob, departmentId)
-value ('Tom', 20, '2000-1-1', 1);
-
-insert into db_test.student (name, age, gender, dob, departmentId)
-value ('Jerry', 19, 'F', '2001-1-1', 2);
-
 insert into db_test.department (title, tel)
 value ('CS', '18600000000');
 
 insert into db_test.department (title, tel)
 value ('EE', '18600000001');
 
-insert into db_test.student (age)
-value (21);
+insert into db_test.student (name, age, dob, departmentId)
+value ('Tom', 20, '2000-1-1', 1);
+
+insert into db_test.student (name, age, gender, dob, departmentId)
+value ('Jerry', 19, 'F', '2001-1-1', 2);
+
+
+# insert into db_test.student (age)
+# value (21);
 
 update db_test.student
 set age  = 19,
@@ -85,3 +86,10 @@ select name, age # 投影操作
 from db_test.student;
 
 show full columns from db_test.student;
+
+select *
+from db_test.student;
+
+delete from db_test.student;
+
+truncate table db_test.student;
