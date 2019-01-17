@@ -93,3 +93,6 @@ from db_test.student;
 delete from db_test.student;
 
 truncate table db_test.student;
+
+select *
+from db_test.department;
