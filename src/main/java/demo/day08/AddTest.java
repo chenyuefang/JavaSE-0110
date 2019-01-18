@@ -28,7 +28,7 @@ public class AddTest implements ActionListener {
         labelSum = new JLabel();
         labelSum.setBounds(50, 190, 180, 50);
         labelSum.setHorizontalAlignment(SwingConstants.CENTER);
-        labelSum.setOpaque(true);
+        labelSum.setOpaque(true); // 设为不透明
         labelSum.setBackground(Color.lightGray);
 
         jButton = new JButton("SUM");

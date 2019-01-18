@@ -9,6 +9,10 @@ public class ButtonTest implements ActionListener {
     private JButton jButton;
 
     private ButtonTest() { // 构造方法：视图
+        initComponent();
+    }
+
+    private void initComponent() {
         JFrame jFrame = new JFrame("button");
 
         jFrame.setSize(300, 300);
