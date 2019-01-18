@@ -1,4 +1,4 @@
-package demo.project;
+package demo.project.student;
 
 import com.mysql.jdbc.Driver;
 
