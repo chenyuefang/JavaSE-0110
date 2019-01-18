@@ -1,4 +1,4 @@
-package demo.day08;
+package demo.project;
 
 import com.mysql.jdbc.Driver;
 
@@ -83,7 +83,7 @@ public class StudentDemo extends JFrame implements ActionListener {
     private boolean checkLogin(String username, String password) throws SQLException {
         new Driver();
         Connection connection = DriverManager.getConnection("jdbc:mysql:///?user=root&password=system");
-        String sql = "select * from db_test.amdin where username = ? and password = ?";
+        String sql = "select * from db_student.admin where username = ? and password = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, username);
         preparedStatement.setString(2, password);

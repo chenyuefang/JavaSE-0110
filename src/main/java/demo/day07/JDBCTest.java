@@ -1,4 +1,4 @@
-package jdbc;
+package demo.day07;
 
 import com.mysql.jdbc.Driver;
 
@@ -16,7 +16,7 @@ import java.sql.ResultSet;
  */
 public class JDBCTest {
 
-    private static final String URL = "jdbc:mysql:///";
+    private static final String URL = "demo.day07:mysql:///";
     private static final String USER = "root";
     private static final String PASSWORD = "system";
 

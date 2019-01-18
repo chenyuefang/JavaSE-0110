@@ -1,12 +1,19 @@
-show databases;
+drop database if exists db_student;
+create database db_student;
 
-drop database if exists db_test;
-create database db_test;
+drop table if exists db_student.admin;
+create table db_student.admin (
+  id       int auto_increment primary key
+  comment 'id PK',
+  username varchar(255) not null
+  comment 'username',
+  password varchar(255) not null
+  comment 'password'
+)
+  comment 'admin table';
 
-# use db_test;
-
-drop table if exists db_test.student;
-create table db_test.student (
+drop table if exists db_student.student;
+create table db_student.student (
   id           int                  auto_increment primary key
   comment 'id 主键', # 自增长
   name         varchar(20) not null
@@ -17,127 +24,18 @@ create table db_test.student (
   departmentId int
 );
 
-drop table if exists db_test.department;
-create table db_test.department (
+drop table if exists db_student.department;
+create table db_student.department (
   id    int auto_increment primary key,
   title varchar(50),
   tel   varchar(20)
 );
 
-alter table db_test.student
+alter table db_student.student
   add constraint
   student_fk_departmentId
 foreign key (departmentId)
-references db_test.department (id);
+references db_student.department (id);
 
-DESC db_test.student; # desc - describe 描述表结构
-
-select *
-from db_test.student; -- 查询语句
-
-select *
-from db_test.department;
-
-insert into db_test.department (title, tel)
-value ('CS', '18600000000');
-
-insert into db_test.department (title, tel)
-value ('EE', '18600000001');
-
-insert into db_test.student (name, age, dob, departmentId)
-value ('Tom', 20, '2000-1-1', 1);
-
-insert into db_test.student (name, age, gender, dob, departmentId)
-value ('Jerry', 19, 'F', '2001-1-1', 2);
-
-# insert into db_test.student (age)
-# value (21);
-
-update db_test.student
-set age  = 19,
-    name = 'Tom'; -- 更新 update
-
-# delete
-# from db_test.student; -- 删除语句
-
-# drop table db_test.student; -- 删除表
-
-show tables from db_test; -- 查询数据库的表
-
-# drop database db_test; -- 删除数据库
-
--- comment Ctrl + /  Ctrl + Shift + /
-
-select 1 /* as
-df... */ + 1;
-
-# truncate table db_test.student;
-
-update db_test.student
-set age = 19
-where id = 1; # 行检索
-
-delete
-from db_test.student
-where id = 2;
-
-select name, age # 投影操作
-from db_test.student;
-
-show full columns from db_test.student;
-
-select *
-from db_test.student;
-
-delete
-from db_test.student;
-
-truncate table db_test.student;
-
-select *
-from db_test.department;
-
-select *
-from db_test.student;
-
-# name, title
-select s.name, d.title
-from db_test.student s
-       inner join db_test.department d on s.departmentId = d.id; # 联合条件
-
-# 学生管理系统
-# 添加学生
-insert into db_test.student
-value (null, 'Tom', 18, 'M', '2000-1-1', 1);
-
-# 查询学生
-select *
-from student;
-
-# 修改学生
-# update ...
-
-# 删除学生
-delete
-from db_test.student
-where id = 1;
-
-# ATM Account
-
-# poker
-
-create table db_test.amdin (
-  id       int auto_increment primary key
-  comment 'id PK',
-  username varchar(255) not null
-  comment 'username',
-  password varchar(255) not null
-  comment 'password'
-)
-  comment 'admin table';
-
-insert into db_test.amdin
-value (null, 'admin', 'admin');
-
-select *
-from db_test.amdin;
+insert db_student.admin
+value (1, 'admin', 'admin');
