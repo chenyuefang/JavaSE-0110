@@ -96,3 +96,29 @@ truncate table db_test.student;
 
 select *
 from db_test.department;
+
+select *
+from db_test.student;
+
+# name, title
+select s.name, d.title
+    from db_test.student s inner join db_test.department d
+    on s.departmentId = d.id; # 联合条件
+
+# 学生管理系统
+# 添加学生
+insert into db_test.student value (null, 'Tom', 18, 'M', '2000-1-1', 1);
+
+# 查询学生
+select *
+from student;
+
+# 修改学生
+# update ...
+
+# 删除学生
+delete from db_test.student where id = 1;
+
+# ATM Account
+
+# poker
