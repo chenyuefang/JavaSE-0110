@@ -14,16 +14,22 @@ public class AddTest implements ActionListener {
 
     private AddTest() { // 构造方法：视图
         JFrame jFrame = new JFrame("button");
-        jFrame.setSize(300, 600);
+        jFrame.setSize(300, 400);
         jFrame.setLayout(null);
 
         textA = new JTextField();
         textA.setBounds(50, 50, 180, 50);
+        textA.setHorizontalAlignment(SwingConstants.CENTER);
+
         textB = new JTextField();
         textB.setBounds(50, 120, 180, 50);
+        textB.setHorizontalAlignment(SwingConstants.CENTER);
+
         labelSum = new JLabel();
         labelSum.setBounds(50, 190, 180, 50);
-//        labelSum.setBackground(Color.darkGray);
+        labelSum.setHorizontalAlignment(SwingConstants.CENTER);
+        labelSum.setOpaque(true);
+        labelSum.setBackground(Color.lightGray);
 
         jButton = new JButton("SUM");
         jButton.setBounds(50, 260, 180, 50);
