@@ -4,24 +4,32 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ButtonTest {
+public class ButtonTest implements ActionListener {
 
-    public static void main(String[] args) {
+    private JButton jButton;
+
+    private ButtonTest() { // 构造方法：视图
         JFrame jFrame = new JFrame("button");
 
         jFrame.setSize(300, 300);
 
-        JButton jButton = new JButton("button...");
+        jButton = new JButton("button...");
 
-        jButton.addActionListener(new ActionListener() { // 匿名内部类
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
+        jButton.addActionListener(this);
 
         jFrame.add(jButton);
 
         jFrame.setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) { // 业务逻辑
+        if (e.getSource() == jButton) {
+            System.exit(0);
+        }
+    }
+
+    public static void main(String[] args) { // ...
+        new ButtonTest();
     }
 }
