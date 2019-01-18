@@ -50,7 +50,6 @@ value ('Tom', 20, '2000-1-1', 1);
 insert into db_test.student (name, age, gender, dob, departmentId)
 value ('Jerry', 19, 'F', '2001-1-1', 2);
 
-
 # insert into db_test.student (age)
 # value (21);
 
@@ -90,7 +89,8 @@ show full columns from db_test.student;
 select *
 from db_test.student;
 
-delete from db_test.student;
+delete
+from db_test.student;
 
 truncate table db_test.student;
 
@@ -102,12 +102,13 @@ from db_test.student;
 
 # name, title
 select s.name, d.title
-    from db_test.student s inner join db_test.department d
-    on s.departmentId = d.id; # 联合条件
+from db_test.student s
+       inner join db_test.department d on s.departmentId = d.id; # 联合条件
 
 # 学生管理系统
 # 添加学生
-insert into db_test.student value (null, 'Tom', 18, 'M', '2000-1-1', 1);
+insert into db_test.student
+value (null, 'Tom', 18, 'M', '2000-1-1', 1);
 
 # 查询学生
 select *
@@ -117,8 +118,26 @@ from student;
 # update ...
 
 # 删除学生
-delete from db_test.student where id = 1;
+delete
+from db_test.student
+where id = 1;
 
 # ATM Account
 
 # poker
+
+create table db_test.amdin (
+  id       int auto_increment primary key
+  comment 'id PK',
+  username varchar(255) not null
+  comment 'username',
+  password varchar(255) not null
+  comment 'password'
+)
+  comment 'admin table';
+
+insert into db_test.amdin
+value (null, 'admin', 'admin');
+
+select *
+from db_test.amdin;
