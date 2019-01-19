@@ -1,9 +1,15 @@
 package demo.project.poker;
 
+import com.mysql.jdbc.Driver;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.*;
 import java.util.List;
 
@@ -33,7 +39,7 @@ public class poker {
         };
 
         private JPanel main, north, center, south;
-        private JButton start, exit;
+        private JButton start, exit, computerWin, playerWin;
         private ImageButton computer, player, red, green, blue, gray, purple, yellow;
         private Map<ImageButton, String> stack;
 
@@ -47,7 +53,7 @@ public class poker {
             setSize(d);
             setUndecorated(true);
 
-            main = new ImagePanel(PATH + "porker_bg.jpg");
+            main = new ImagePanel(PATH + "poker_bg.jpg");
             main.setLayout(new BorderLayout());
 
             north = new JPanel();
@@ -55,13 +61,20 @@ public class poker {
             north.setOpaque(false);
             main.add(north, BorderLayout.NORTH);
 
-            // 初始化底牌
             initCenter();
 
             south = new JPanel();
             south.setPreferredSize(new Dimension(d.width, CARD_HEIGHT + 40));
             south.setOpaque(false);
             main.add(south, BorderLayout.SOUTH);
+
+            computerWin = new ImageButton(PATH + "win.png", 200, 200);
+            north.add(computerWin, BorderLayout.NORTH);
+            playerWin = new ImageButton(PATH + "win.png", 200, 200);
+            south.add(playerWin, BorderLayout.SOUTH);
+
+            computerWin.setVisible(false);
+            playerWin.setVisible(false);
 
             add(main);
             setVisible(true);
@@ -73,10 +86,16 @@ public class poker {
 
             if (computer != null) {
                 north.remove(computer);
+                if (computerWin != null) {
+                    computerWin.setVisible(false);
+                }
             }
 
             if (player != null) {
                 south.remove(player);
+                if (playerWin != null) {
+                    playerWin.setVisible(false);
+                }
             }
 
             center = new ImagePanel(PATH + "center_bg.jpg");
@@ -105,7 +124,8 @@ public class poker {
             buttons.add(yellow);
 
             stack = new LinkedHashMap<>();
-            List<String> list = Arrays.asList(CARDS);
+            String[] tempCards = CARDS.clone();
+            List<String> list = Arrays.asList(tempCards);
             Collections.shuffle(list); // shuffle the list
             int i = 0;
             for (ImageButton button : buttons) {
@@ -152,9 +172,36 @@ public class poker {
                 north.revalidate();
                 north.repaint();
 
-                // TODO: 1/19/2019 show winner
+                String winner = null;
+                for (String card : CARDS) {
+                    if (playerSelected.equals(card)) {
+                        computerWin.setVisible(true);
+                        winner = "computer";
+                        break;
+                    }
+                    if (computerSelected.equals(card)) {
+                        playerWin.setVisible(true);
+                        winner = "player";
+                        break;
+                    }
+                }
 
                 // TODO: 1/19/2019 save data to database
+                try {
+                    new Driver();
+                    Connection connection = DriverManager.getConnection("jdbc:mysql:///?user=root&password=system");
+                    String sql = "insert into db_poker.stat value (null, ?, ?, ?)";
+                    PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                    preparedStatement.setString(1, computerSelected);
+                    preparedStatement.setString(2, playerSelected);
+                    preparedStatement.setString(3, winner);
+                    preparedStatement.executeUpdate();
+
+                    preparedStatement.close();
+                    connection.close();
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
             } else {
                 if (playerSelected == null) {
                     // 玩家
