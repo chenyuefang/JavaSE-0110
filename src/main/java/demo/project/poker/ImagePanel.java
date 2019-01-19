@@ -6,11 +6,11 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-class JPanelWithBackgroundImage extends JPanel {
+class ImagePanel extends JPanel {
 
     private Image backgroundImage;
 
-    JPanelWithBackgroundImage(String fileName)  {
+    ImagePanel(String fileName)  {
         try {
             backgroundImage = ImageIO.read(new File(fileName));
         } catch (IOException e) {

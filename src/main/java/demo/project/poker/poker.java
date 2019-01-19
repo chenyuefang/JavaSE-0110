@@ -35,7 +35,7 @@ public class poker {
         private JPanel main, north, center, south;
         private JButton start, exit;
         private ImageButton computer, player, red, green, blue, gray, purple, yellow;
-        private Map<JButton, String> stack;
+        private Map<ImageButton, String> stack;
 
         private PokerDemo() {
             initComponent();
@@ -47,7 +47,7 @@ public class poker {
             setSize(d);
             setUndecorated(true);
 
-            main = new JPanelWithBackgroundImage(PATH + "porker_bg.jpg");
+            main = new ImagePanel(PATH + "porker_bg.jpg");
             main.setLayout(new BorderLayout());
 
             north = new JPanel();
@@ -79,7 +79,7 @@ public class poker {
                 south.remove(player);
             }
 
-            center = new JPanelWithBackgroundImage(PATH + "center_bg.jpg");
+            center = new ImagePanel(PATH + "center_bg.jpg");
             center.setLayout(new GridBagLayout());
 
             start = new ImageButton(PATH + "start.png", 128, 128);
@@ -108,14 +108,14 @@ public class poker {
             List<String> list = Arrays.asList(CARDS);
             Collections.shuffle(list); // shuffle the list
             int i = 0;
-            for (JButton button : buttons) {
+            for (ImageButton button : buttons) {
                 stack.put(button, list.get(i));
                 i++;
                 center.add(button, new GridBagConstraints());
                 button.addActionListener(this);
             }
-            for (JButton key : stack.keySet()) {
-                System.out.print(stack.get(key) + "\t");
+            for (JButton button : stack.keySet()) {
+                System.out.print("\t" + stack.get(button));
             }
             System.out.println();
 
@@ -125,6 +125,7 @@ public class poker {
         }
 
         private String playerSelected = null;
+        private String computerSelected = null;
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -137,15 +138,28 @@ public class poker {
             } else if (selected == exit) {
                 System.exit(0);
             } else if (selected == player) {
+                // 玩家摊牌
                 south.remove(player);
                 player = new ImageButton(PATH + "cards/" + playerSelected + ".png", CARD_WIDTH, CARD_HEIGHT);
                 south.add(player);
                 south.revalidate();
                 south.repaint();
+
+                // 计算机摊牌
+                north.remove(computer);
+                computer = new ImageButton(PATH + "cards/" + computerSelected + ".png", CARD_WIDTH, CARD_HEIGHT);
+                north.add(computer);
+                north.revalidate();
+                north.repaint();
+
+                // TODO: 1/19/2019 show winner
+
+                // TODO: 1/19/2019 save data to database
             } else {
                 if (playerSelected == null) {
-                    playerSelected = stack.get(selected);
                     // 玩家
+                    playerSelected = stack.get(selected);
+                    System.out.println("player selected: " + playerSelected);
                     player = new ImageButton(selected.getImagePath(), CARD_WIDTH, CARD_HEIGHT);
                     player.addActionListener(this);
                     south.add(player, BorderLayout.SOUTH);
@@ -153,7 +167,13 @@ public class poker {
                     south.repaint();
 
                     // 计算机
-                    computer = new ImageButton(PATH + "cards/purple_back.png", CARD_WIDTH, CARD_HEIGHT);
+                    stack.remove(selected);
+                    @SuppressWarnings("SimplifyStreamApiCallChains")
+                    ImageButton[] imageButtons = stack.keySet().stream().toArray(ImageButton[]::new);
+                    ImageButton randomImageButton = imageButtons[new Random().nextInt(imageButtons.length)];
+                    computerSelected = stack.get(randomImageButton);
+                    System.out.println("computer selected: " + computerSelected);
+                    computer = new ImageButton(randomImageButton.getImagePath(), CARD_WIDTH, CARD_HEIGHT);
                     north.add(computer, BorderLayout.NORTH);
                     north.revalidate();
                     north.repaint();
