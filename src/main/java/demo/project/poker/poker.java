@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
@@ -33,16 +32,16 @@ public class poker {
                 "AS", "AH", "AC", "AD",
         };
 
-        private JPanel main, center;
+        private JPanel main, north, center, south;
         private JButton start, exit;
-        private JButton computer, player, red, green, blue, gray, purple, yellow;
+        private ImageButton computer, player, red, green, blue, gray, purple, yellow;
         private Map<JButton, String> stack;
 
-        private PokerDemo() throws IOException {
+        private PokerDemo() {
             initComponent();
         }
 
-        private void initComponent() throws IOException {
+        private void initComponent() {
             setTitle("Poker Demo");
             Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
             setSize(d);
@@ -51,24 +50,34 @@ public class poker {
             main = new JPanelWithBackgroundImage(PATH + "porker_bg.jpg");
             main.setLayout(new BorderLayout());
 
-            computer = new ImageButton(PATH + "cards/purple_back.png", CARD_WIDTH, CARD_HEIGHT);
-            player = new ImageButton(PATH + "cards/purple_back.png", CARD_WIDTH, CARD_HEIGHT);
-
-            // 计算机
-            main.add(computer, BorderLayout.NORTH);
+            north = new JPanel();
+            north.setPreferredSize(new Dimension(d.width, CARD_HEIGHT + 40));
+            north.setOpaque(false);
+            main.add(north, BorderLayout.NORTH);
 
             // 初始化底牌
             initCenter();
 
-            // 玩家
-            main.add(player, BorderLayout.SOUTH);
+            south = new JPanel();
+            south.setPreferredSize(new Dimension(d.width, CARD_HEIGHT + 40));
+            south.setOpaque(false);
+            main.add(south, BorderLayout.SOUTH);
 
             add(main);
-
             setVisible(true);
         }
 
-        private void initCenter() throws IOException {
+        private void initCenter() {
+
+            playerSelected = null;
+
+            if (computer != null) {
+                north.remove(computer);
+            }
+
+            if (player != null) {
+                south.remove(player);
+            }
 
             center = new JPanelWithBackgroundImage(PATH + "center_bg.jpg");
             center.setLayout(new GridBagLayout());
@@ -87,7 +96,7 @@ public class poker {
             purple = new ImageButton(PATH + "cards/purple_back.png", CARD_WIDTH, CARD_HEIGHT);
             yellow = new ImageButton(PATH + "cards/yellow_back.png", CARD_WIDTH, CARD_HEIGHT);
 
-            Set<JButton> buttons = new HashSet<>();
+            Set<ImageButton> buttons = new HashSet<>();
             buttons.add(red);
             buttons.add(green);
             buttons.add(blue);
@@ -115,28 +124,44 @@ public class poker {
             main.add(center);
         }
 
+        private String playerSelected = null;
+
         @Override
         public void actionPerformed(ActionEvent e) {
-            JButton selected = (JButton) e.getSource();
-            System.out.println(stack.get(selected));
-
+            ImageButton selected = (ImageButton) e.getSource();
             if (selected == start) {
                 main.remove(center);
-                try {
-                    initCenter();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
+                initCenter();
                 main.revalidate();
                 main.repaint();
-            }
-
-            if (selected == exit) {
+            } else if (selected == exit) {
                 System.exit(0);
+            } else if (selected == player) {
+                south.remove(player);
+                player = new ImageButton(PATH + "cards/" + playerSelected + ".png", CARD_WIDTH, CARD_HEIGHT);
+                south.add(player);
+                south.revalidate();
+                south.repaint();
+            } else {
+                if (playerSelected == null) {
+                    playerSelected = stack.get(selected);
+                    // 玩家
+                    player = new ImageButton(selected.getImagePath(), CARD_WIDTH, CARD_HEIGHT);
+                    player.addActionListener(this);
+                    south.add(player, BorderLayout.SOUTH);
+                    south.revalidate();
+                    south.repaint();
+
+                    // 计算机
+                    computer = new ImageButton(PATH + "cards/purple_back.png", CARD_WIDTH, CARD_HEIGHT);
+                    north.add(computer, BorderLayout.NORTH);
+                    north.revalidate();
+                    north.repaint();
+                }
             }
         }
 
-        public static void main(String[] args) throws Exception {
+        public static void main(String[] args) {
             new PokerDemo();
         }
     }

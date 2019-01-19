@@ -10,8 +10,12 @@ class JPanelWithBackgroundImage extends JPanel {
 
     private Image backgroundImage;
 
-    JPanelWithBackgroundImage(String fileName) throws IOException {
-        backgroundImage = ImageIO.read(new File(fileName));
+    JPanelWithBackgroundImage(String fileName)  {
+        try {
+            backgroundImage = ImageIO.read(new File(fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void paintComponent(Graphics g) {
