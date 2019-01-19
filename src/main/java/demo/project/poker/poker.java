@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.*;
+import java.util.List;
 
 /**
  * Spade > Heart > Club > Diamond
@@ -95,9 +96,12 @@ public class poker {
             buttons.add(yellow);
 
             stack = new LinkedHashMap<>();
+            List<String> list = Arrays.asList(CARDS);
+            Collections.shuffle(list); // shuffle the list
+            int i = 0;
             for (JButton button : buttons) {
-                int index = new Random().nextInt(CARDS.length);
-                stack.put(button, CARDS[index]);
+                stack.put(button, list.get(i));
+                i++;
                 center.add(button, new GridBagConstraints());
                 button.addActionListener(this);
             }
