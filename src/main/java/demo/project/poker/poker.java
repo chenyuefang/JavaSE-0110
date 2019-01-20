@@ -49,8 +49,9 @@ public class poker {
 
         private void initComponent() {
             setTitle("Poker Demo");
+            setExtendedState(MAXIMIZED_BOTH);
             Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-            setSize(d);
+//            setSize(d);
             setUndecorated(true);
 
             main = new ImagePanel(PATH + "poker_bg.jpg");
