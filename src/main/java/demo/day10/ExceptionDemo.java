@@ -5,6 +5,8 @@ import java.io.RandomAccessFile;
 
 public class ExceptionDemo {
 
+
+
     public static void a() throws NullPointerException { // NPE
         try {
             b();
