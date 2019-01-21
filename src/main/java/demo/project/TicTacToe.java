@@ -1,24 +1,32 @@
 package demo.project;
 
-import com.sun.glass.events.WindowEvent;
-
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 /**
  * Tic Tac Toe Game
+ * <p>
+ * player first: x
+ * computer: o
  */
 public class TicTacToe extends JFrame implements ActionListener {
 
     private static final String PATH = "assets/images/ttt/";
-    private int counter;
+    private static final int[][] results = {
+            {0, 1, 2}, {3, 4, 5}, {6, 7, 8}, // row
+            {0, 3, 6}, {1, 4, 7}, {2, 5, 8}, // col
+            {0, 4, 8}, {2, 4, 6} // diagonal
+    };
+
     private JPanel main;
     private JButton[] buttons = new JButton[9];
     private boolean isGameOver;
     private int[] result;
+    private int counter;
 
     /**
      * Constructor
@@ -60,6 +68,11 @@ public class TicTacToe extends JFrame implements ActionListener {
         setVisible(true);
     }
 
+    /**
+     * 主面板初始化按钮
+     *
+     * @param main 主面板
+     */
     private void initButtons(JPanel main) {
         for (int i = 0; i < buttons.length; i++) {
             JButton button = getButton();
@@ -69,7 +82,6 @@ public class TicTacToe extends JFrame implements ActionListener {
             main.add(button);
         }
     }
-
 
     /**
      * 按钮事件响应
@@ -85,25 +97,26 @@ public class TicTacToe extends JFrame implements ActionListener {
         if (e.getActionCommand().matches("[xo]+")) {
             return;
         }
-        JButton curr = (JButton) e.getSource();
-        String iconFile = (++counter % 2 == 0) ? "o" : "x";
-        curr.setIcon(new ImageIcon(PATH + iconFile + ".png"));
 
-        int currIndex = Integer.parseInt(e.getActionCommand());
-        buttons[currIndex].setActionCommand(iconFile);
+        // 玩家
+        player(e);
 
-        // begin: print current game in console
-        for (int i = 0; i < buttons.length; i++) {
-            JButton button = buttons[i];
-            if (i % 3 == 0) {
-                System.out.println();
-            }
-            System.out.print("\t" + button.getActionCommand());
-        }
-        System.out.println();
-        // endOf: print current game in console
-
+        // AI
         ai();
+    }
+
+    /**
+     * 玩家下一步
+     * @param e 按钮点击事件
+     */
+    private void player(ActionEvent e) {
+        JButton curr = (JButton) e.getSource();
+        curr.setIcon(new ImageIcon(PATH + "x.png"));
+        int currIndex = Integer.parseInt(e.getActionCommand());
+        buttons[currIndex].setActionCommand("x");
+        counter++;
+
+        printCurrent();
 
         checkGameOver();
 
@@ -113,6 +126,23 @@ public class TicTacToe extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * 打印当前棋局
+     */
+    private void printCurrent() {
+        for (int i = 0; i < buttons.length; i++) {
+            JButton button = buttons[i];
+            if (i % 3 == 0) {
+                System.out.println();
+            }
+            System.out.print("\t" + button.getActionCommand());
+        }
+        System.out.println();
+    }
+
+    /**
+     * 初始化新游戏
+     */
     private void newGame() {
         setTitle("Tic Tac Toe");
         main.removeAll();
@@ -131,18 +161,18 @@ public class TicTacToe extends JFrame implements ActionListener {
      * by which line
      */
     private void showResult() {
-        if (result == null) {
-            setTitle("平局");
-            return;
-        }
-        String s = buttons[result[0]].getActionCommand();
-        for (int i : result) {
-            buttons[i].setBackground(Color.orange);
-        }
-        if (s.equals("x")) {
-            setTitle("玩家胜");
+        if (result != null) {
+            String s = buttons[result[0]].getActionCommand();
+            for (int i : result) {
+                buttons[i].setBackground(Color.orange);
+            }
+            if (s.equals("x")) {
+                setTitle("玩家胜");
+            } else {
+                setTitle("AI 胜");
+            }
         } else {
-            setTitle("AI胜");
+            setTitle("平局");
         }
     }
 
@@ -150,16 +180,11 @@ public class TicTacToe extends JFrame implements ActionListener {
      * 判断游戏是否结束
      */
     private void checkGameOver() {
-        int[][] results = {
-                {0, 1, 2}, {3, 4, 5}, {6, 7, 8}, // row
-                {0, 3, 6}, {1, 4, 7}, {2, 5, 8}, // col
-                {0, 4, 8}, {2, 4, 6} // diagonal
-        };
-
         for (int[] result : results) {
             if (isLine(result)) {
                 isGameOver = true;
                 this.result = result;
+                return;
             }
         }
         if (counter == 9) {
@@ -168,6 +193,12 @@ public class TicTacToe extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * 判断是否有三子成一线
+     *
+     * @param result 可能成一线的三子下标
+     * @return 是否有三子成一线
+     */
     private boolean isLine(int[] result) {
         String aString = buttons[result[0]].getActionCommand();
         String bString = buttons[result[1]].getActionCommand();
@@ -175,11 +206,53 @@ public class TicTacToe extends JFrame implements ActionListener {
         return aString.equals(bString) && bString.equals(cString);
     }
 
+    private String getString(int i) {
+        return buttons[i].getActionCommand();
+    }
+
     /**
      * 计算机 AI
      */
     private void ai() {
-        // TODO: 21/01/2019 computer AI
+        if (isGameOver) {
+            return;
+        }
+        int position = -1;
+        // TODO: 21/01/2019 to be optimize
+        for (int i = 0; i < buttons.length; i++) {
+            if (!buttons[i].getActionCommand().matches("[xo]+")) {
+                position = i;
+                break;
+            }
+        }
+        for (int[] ints : results) {
+            if (getString(ints[0]).equals(getString(ints[1]))) {
+                if (!buttons[ints[2]].getActionCommand().matches("[xo]+")) {
+                    position = ints[2];
+                }
+            } else if (getString(ints[1]).equals(getString(ints[2]))) {
+                if (!buttons[ints[0]].getActionCommand().matches("[xo]+")) {
+                    position = ints[0];
+                }
+            } else if (getString(ints[0]).equals(getString(ints[2]))) {
+                if (!buttons[ints[1]].getActionCommand().matches("[xo]+")) {
+                    position = ints[1];
+                }
+            }
+        }
+        if (position != -1) {
+            buttons[position].setIcon(new ImageIcon(PATH + "o.png"));
+            buttons[position].setActionCommand("o");
+            counter++;
+            printCurrent();
+        }
+
+        checkGameOver();
+
+        if (isGameOver) {
+            System.out.println("--- game over ---");
+            showResult();
+        }
     }
 
     public static void main(String[] args) {
