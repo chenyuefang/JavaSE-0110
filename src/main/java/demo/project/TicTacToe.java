@@ -5,7 +5,9 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * Tic Tac Toe Game
@@ -218,13 +220,19 @@ public class TicTacToe extends JFrame implements ActionListener {
             return;
         }
         int position = -1;
-        // TODO: 21/01/2019 to be optimize
+        // TODO: 21/01/2019 to be optimized
+        // 在 indexes 中寻找最优
+        ArrayList<Integer> indexes = new ArrayList<>();
         for (int i = 0; i < buttons.length; i++) {
             if (!buttons[i].getActionCommand().matches("[xo]+")) {
-                position = i;
-                break;
+                indexes.add(i);
             }
         }
+        if (indexes.size() > 0) {
+            position = indexes.get(new Random().nextInt(indexes.size()));
+        }
+        // TODO: 21/01/2019 to be optimized
+        // 列举所有二缺一，优先选自己
         for (int[] ints : results) {
             if (getString(ints[0]).equals(getString(ints[1]))) {
                 if (!buttons[ints[2]].getActionCommand().matches("[xo]+")) {
